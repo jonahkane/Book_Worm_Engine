@@ -1,33 +1,12 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
+export const LOGIN_USER = gql``;
 
-query user {
-    User {
-        _id
-        username
-        email
-        bookCount
-        savedBooks
-    }
-}
+export const ADD_USER = gql``;
 
-`;
+export const SAVE_BOOK = gql``;
 
-export const QUERY_BOOK = gql`
-query book {
-    book {
-        _id
-        authors
-        description
-        bookId
-        image
-        link
-        title
-      }
-}
-
-`;
+export const REMOVE_BOOK = gql``;
 
 // mutations.js:
 
