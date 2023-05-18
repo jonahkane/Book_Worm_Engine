@@ -1,33 +1,23 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-
-query user {
-    User {
-        _id
-        username
-        email
-        bookCount
-        savedBooks
+export const GET_ME = gql`
+    query me {
+        me {
+            _id
+            username
+            email
+            bookCount
+            savedBooks {
+                bookId
+                title
+                description
+                authors
+                link
+                image
+            }
+        }
     }
-}
-
-`;
-
-export const QUERY_BOOK = gql`
-query book {
-    book {
-        _id
-        authors
-        description
-        bookId
-        image
-        link
-        title
-      }
-}
-
-`;
+    `;
 
 //queries.js: This will hold the query GET_ME, which will execute the me query set up using Apollo Server.
 
