@@ -1,3 +1,34 @@
+import { gql } from '@apollo/client';
+
+export const QUERY_USER = gql`
+
+query user {
+    User {
+        _id
+        username
+        email
+        bookCount
+        savedBooks
+    }
+}
+
+`;
+
+export const QUERY_BOOK = gql`
+query book {
+    book {
+        _id
+        authors
+        description
+        bookId
+        image
+        link
+        title
+      }
+}
+
+`;
+
 // mutations.js:
 
 // LOGIN_USER will execute the loginUser mutation set up using Apollo Server.
