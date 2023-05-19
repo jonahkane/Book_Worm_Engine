@@ -37,13 +37,7 @@ const SignupForm = () => {
       Auth.login(token);
 
 
-      // const response = await createUser(userFormData);
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const { token, user } = await response.json();
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -115,4 +109,4 @@ const SignupForm = () => {
 };
 
 export default SignupForm;
-//SignupForm.js: Replace the addUser() functionality imported from the API file with the ADD_USER mutation functionality.
+
