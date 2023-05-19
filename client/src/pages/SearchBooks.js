@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {  Container,  Col,  Form,  Button,  Card,  Row } from 'react-bootstrap';
+import { useQuery, useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-// import { saveBook, searchGoogleBooks } from '../utils/API';
+import { saveBook, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { SAVE_BOOK } from "../utils/mutations";
 import { useMutation } from '@apollo/client';
@@ -14,10 +15,10 @@ const SearchBooks = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
+  const [saveBook] = useMutation(SAVE_BOOK);
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
