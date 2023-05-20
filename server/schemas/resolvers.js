@@ -6,17 +6,21 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-      getSingleUser: async (parent, args, context) => {
-            if (context.user) {
-              const userData = await User.findOne({ _id: context.user._id })
-              .select("-__v -password")
-
-              
-            return userData;
+      getSingleUser: async (_, { user, params }, { res }) => {
+        try {
+          const foundUser = await User.findOne({
+            $or: [{_id: user ? user._id : params.id }, { username: params.username }],
+          });
+          if (!foundUser) {
+            throw new Error('Cannot find user with this id');
           }
-             throw new AuthenticationError('You need to be logged in!');
-        },
-    },
+          return foundUser;
+        } catch (error) {
+          res.status(400);
+          throw error;
+        }
+      },
+      },
     Mutation: {
         createUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
@@ -41,7 +45,7 @@ const resolvers = {
           },
           
           saveBook: async (parent, { body }, context) => {
-            const { user } = conext;
+            const { user } = context;
             try {
               const updatedUser = await User.fineOneAndUpdated(
                     {_id: user._id},
