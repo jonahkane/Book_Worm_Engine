@@ -17,7 +17,7 @@ This application took a fully functioning Google Books API search engine built w
 
 ## Installation
 
-This is a fully deployed application. No installation required. Simply visit the deployed URL.
+This is a fully deployed application. No installation required. Simply visit the deployed URL at https://book-worm-engine.herokuapp.com/.
 
 ## Usage
 
