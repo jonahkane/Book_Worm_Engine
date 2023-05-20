@@ -21,7 +21,7 @@ const SearchBooks = () => {
   const { loading, data } = useQuery(QUERY_SINGLEUSER)
   const userData = data?.getSingleUser || []
 
-  const [saveBookMutation, { error }] = useMutation(SAVE_BOOK, {
+  const [saveBookMutation] = useMutation(SAVE_BOOK, {
     update(cache, { data: { saveBook }}) {
       try {
         cache.writeQuery({
