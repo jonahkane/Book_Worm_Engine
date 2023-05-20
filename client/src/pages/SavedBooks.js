@@ -11,8 +11,8 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
 const { loading, data } = useQuery(QUERY_SINGLEUSER)
-
-
+const userData = data?.getSingleUser || []
+console.log(userData);
 
 const [removeBook] = useMutation(DELETE_BOOK, {
   updated(cache, { data: removeBook }) {
@@ -26,7 +26,7 @@ const [removeBook] = useMutation(DELETE_BOOK, {
     }
   }
 })
-const userData = data?.getSingleUser || []
+
 
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -34,14 +34,12 @@ const userData = data?.getSingleUser || []
     if (!token) {
       return false;
     }
-
-    removeBookId(bookId);
-
-
     try {
       await removeBook({
         variables: { bookId }
       });
+      console.log(userData);
+      removeBookId(bookId);
     } catch (err) {
       console.error(err);
     }
